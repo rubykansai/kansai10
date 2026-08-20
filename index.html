@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KansaiRubyKaigi10 — 2027.06.19 Sannomiya, Kobe</title>
+<meta name="description" content="関西Ruby会議10を2027年6月19日（土）、神戸・三宮の月世界で開催します。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="./">
+<meta property="og:title" content="KansaiRubyKaigi10 — 2027.06.19 Sannomiya, Kobe">
+<meta property="og:description" content="関西Ruby会議10を2027年6月19日（土）、神戸・三宮の月世界で開催します。">
+<meta property="og:image" content="ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KansaiRubyKaigi10のイベント名、輪郭線の10、兎を乗せたロケット、暗い月、2027年6月19日の開催日">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="./">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;family=Noto+Sans+JP:wght@300&amp;display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "関西Ruby会議10",
+  "startDate": "2027-06-19",
+  "location": {
+    "@type": "Place",
+    "name": "LiveHallクラブ月世界",
+    "address": "日本、〒650-0011 兵庫県神戸市中央区下山手通１丁目３−８ 高本観光ビル"
+  },
+  "url": "./"
+}
+</script>
+<style>
+:root{
+  --bg:#08090D;
+  --ink:#E9E9EC;
+  --dim:rgba(233,233,236,.55);
+  --line:rgba(233,233,236,.13);
+  --red:#FF3E4D;
+  --red-deep:#A6122E;
+  --moon:#0D0F15;
+  --sans:"Inter Tight",sans-serif;
+  --mono:"JetBrains Mono",monospace;
+  --jp:"Noto Sans JP",sans-serif;
+  --pad:clamp(18px,3.4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100svh;overflow-x:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;
+}
+/* 光の滲み：上は冷たく、地平だけ夜明け */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(58% 46% at 12% 4%, rgba(58,84,178,.17) 0%, rgba(58,84,178,0) 70%),
+    radial-gradient(96% 34% at 50% 104%, rgba(206,84,52,.19) 0%, rgba(206,84,52,0) 72%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:97;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+.page{position:relative;z-index:2;min-height:100svh;display:flex;flex-direction:column;padding:var(--pad)}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* 上段 */
+.head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.head .mark{display:flex;align-items:center;gap:9px;color:var(--ink)}
+.head .mark::before,.tag::before{content:"";display:block;width:5px;height:5px;background:var(--red);border-radius:50%;flex:none}
+.ghost{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);border:1px solid var(--line);padding:9px 16px;background:none;
+  display:inline-flex;min-height:44px;align-items:center;justify-content:center;
+  cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;
+}
+.ghost:hover{border-color:var(--dim);color:var(--ink)}
+
+/* 天体 */
+.sky{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.moon{
+  position:absolute;top:50%;right:-14%;transform:translateY(-50%);
+  width:clamp(340px,54vw,780px);aspect-ratio:1;border-radius:50%;
+  background:
+    radial-gradient(circle at 26% 24%, rgba(233,233,236,.11) 0%, rgba(233,233,236,.02) 42%, rgba(233,233,236,0) 62%),
+    var(--moon);
+  box-shadow:inset 2px 2px 0 rgba(233,233,236,.10);
+}
+.rings{position:absolute;top:50%;right:-14%;transform:translateY(-50%);width:clamp(340px,54vw,780px);aspect-ratio:1;overflow:visible}
+.rings circle{fill:none;stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.rings .orbit{stroke-dasharray:1 9;stroke-linecap:round;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stars circle{fill:var(--ink)}
+.stars{position:absolute;inset:0;width:100%;height:100%}
+
+.craft{
+  position:absolute;left:38%;top:20%;width:clamp(96px,12vw,168px);overflow:visible;
+  animation:drift 9s ease-in-out infinite;
+}
+@keyframes drift{0%,100%{transform:rotate(41deg) translateY(0)}50%{transform:rotate(41deg) translateY(-13px)}}
+
+/* 主役 */
+.lock{margin-top:auto;padding-top:clamp(24px,6vh,72px);animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.tag{display:flex;align-items:center;gap:9px;margin-bottom:clamp(12px,1.8vw,20px)}
+h1{font-weight:400;font-size:inherit}
+.name{
+  display:block;font-weight:600;font-size:clamp(23px,4.6vw,62px);
+  letter-spacing:-.035em;line-height:1;
+}
+.ten{
+  display:block;font-weight:700;font-size:clamp(104px,21vw,272px);
+  letter-spacing:-.06em;line-height:.82;margin:clamp(2px,.6vw,8px) 0 0 -.014em;
+  color:var(--ink);-webkit-text-fill-color:transparent;
+  -webkit-text-stroke:clamp(1.2px,.16vw,2.4px) var(--ink);
+}
+.jp{margin-top:clamp(14px,2.2vw,24px);font-family:var(--jp);font-size:clamp(13px,1.5vw,16px);font-weight:300;letter-spacing:.08em;color:var(--ink);opacity:.72}
+
+/* 下段 */
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:clamp(12px,2vw,28px);
+  border-top:1px solid var(--line);margin-top:clamp(22px,3.4vw,40px);padding-top:clamp(14px,1.8vw,20px);
+}
+.meta dl{min-width:0}
+.meta dd{margin-top:8px;font-size:clamp(14px,1.6vw,17px);font-weight:500;letter-spacing:-.01em}
+.meta a,.hashtag a{color:inherit;text-decoration-color:var(--dim);text-underline-offset:.2em}
+.meta a:hover,.hashtag a:hover{text-decoration-color:var(--ink)}
+.foot{display:flex;justify-content:space-between;gap:14px;padding-top:clamp(18px,2.6vw,28px)}
+.hashtag{text-transform:none}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.craft{transform:rotate(41deg)}}
+@media(max-width:640px){
+  .head{gap:8px}
+  .ghost{padding-inline:12px}
+  .moon{right:-32%;top:32%;width:min(560px,110vw)}
+  .rings{right:-32%;top:32%;width:min(560px,110vw)}
+  .craft{left:4%;top:12%}
+  .foot{flex-direction:column;gap:5px}
+}
+</style>
+</head>
+<body>
+
+<div class="sky">
+  <svg class="stars" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="120" cy="110" r="1.1" opacity=".7"/><circle cx="290" cy="58" r="1.5" opacity=".5"/>
+    <circle cx="430" cy="176" r="1" opacity=".6"/><circle cx="612" cy="88" r="1.3" opacity=".45"/>
+    <circle cx="742" cy="246" r="1" opacity=".55"/><circle cx="188" cy="330" r="1.4" opacity=".4"/>
+    <circle cx="905" cy="132" r="1.1" opacity=".5"/><circle cx="1076" cy="300" r="1.2" opacity=".45"/>
+    <circle cx="356" cy="486" r="1" opacity=".5"/><circle cx="1230" cy="180" r="1.3" opacity=".4"/>
+    <circle cx="66" cy="560" r="1.1" opacity=".45"/><circle cx="520" cy="640" r="1" opacity=".35"/>
+  </svg>
+
+  <div class="moon" aria-hidden="true"></div>
+
+  <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+    <circle cx="200" cy="200" r="199"/>
+    <circle class="orbit" cx="200" cy="200" r="228" style="transform-origin:200px 200px"/>
+    <circle cx="200" cy="200" r="262" opacity=".55"/>
+    <circle cx="152" cy="150" r="34" opacity=".5"/>
+    <circle cx="248" cy="238" r="52" opacity=".38"/>
+    <circle cx="126" cy="252" r="21" opacity=".45"/>
+    <circle cx="270" cy="118" r="15" opacity=".4"/>
+    <circle cx="196" cy="316" r="26" opacity=".3"/>
+  </svg>
+
+  <svg class="craft" viewBox="0 0 200 560" role="img" aria-label="兎を乗せた探査機が月へ向かう線画">
+    <defs>
+      <radialGradient id="gemGlow">
+        <stop offset="0%" stop-color="#FF3E4D" stop-opacity=".34"/>
+        <stop offset="100%" stop-color="#FF3E4D" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <g fill="none" stroke="#E9E9EC" stroke-width="4" stroke-linejoin="round" opacity=".82">
+      <path d="M100 10 C121 46 132 96 132 146 L132 212 C132 228 118 238 100 238 C82 238 68 228 68 212 L68 146 C68 96 79 46 100 10 Z"/>
+      <path d="M68 168 L38 226 L38 246 L68 216"/>
+      <path d="M132 168 L162 226 L162 246 L132 216"/>
+      <path d="M72 238 L128 238"/>
+      <path d="M84 250 L86 276 M100 252 L100 284 M116 250 L114 276"/>
+    </g>
+    <circle cx="100" cy="118" r="29" fill="#08090D" stroke="#E9E9EC" stroke-width="4" opacity=".9"/>
+    <g fill="#E9E9EC" opacity=".92">
+      <path d="M94 122 C86 109 84 97 88 91 C95 96 97 108 98 122 Z"/>
+      <path d="M106 122 C114 109 116 97 112 91 C105 96 103 108 102 122 Z"/>
+      <ellipse cx="100" cy="130" rx="12" ry="10"/>
+    </g>
+    <circle cx="100" cy="186" r="32" fill="url(#gemGlow)"/>
+    <g>
+      <polygon points="91,168 109,168 105,180 95,180" fill="#FF3E4D"/>
+      <polygon points="91,168 82,180 95,180" fill="#A6122E"/>
+      <polygon points="109,168 118,180 105,180" fill="#A6122E"/>
+      <polygon points="82,180 95,180 100,208" fill="#A6122E"/>
+      <polygon points="95,180 105,180 100,208" fill="#FF3E4D"/>
+      <polygon points="105,180 118,180 100,208" fill="#A6122E"/>
+    </g>
+    <path d="M100 300 C97 356 87 416 62 496" fill="none" stroke="#FF3E4D" stroke-width="4"
+          stroke-linecap="round" stroke-dasharray="1 22" opacity=".9"/>
+  </svg>
+</div>
+
+<main class="page">
+  <header class="head">
+    <p class="mono mark">KansaiRubyKaigi10</p>
+      <a class="ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%E9%96%A2%E8%A5%BFRuby%E4%BC%9A%E8%AD%B010&amp;dates=20270619%2F20270620&amp;location=LiveHall%E3%82%AF%E3%83%A9%E3%83%96%E6%9C%88%E4%B8%96%E7%95%8C%2C%20%E6%97%A5%E6%9C%AC%E3%80%81%E3%80%92650-0011%20%E5%85%B5%E5%BA%AB%E7%9C%8C%E7%A5%9E%E6%88%B8%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%B8%8B%E5%B1%B1%E6%89%8B%E9%80%9A%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%93%E2%88%92%EF%BC%98%20%E9%AB%98%E6%9C%AC%E8%A6%B3%E5%85%89%E3%83%93%E3%83%AB&amp;details=KansaiRubyKaigi10%0Ahttps%3A%2F%2Fregional.rubykaigi.org%2Fkansai10%2F&amp;ctz=Asia%2FTokyo" target="_blank" rel="noopener" aria-label="Google Calendarに関西Ruby会議10を追加">Add to calendar</a>
+  </header>
+
+  <section class="lock" aria-labelledby="event-name">
+    <p class="mono tag">See you on the moon.</p>
+    <h1 id="event-name" aria-label="KansaiRubyKaigi10">
+      <span class="name">KansaiRubyKaigi</span>
+      <span class="ten">10</span>
+    </h1>
+    <p class="jp">十度目の関西Ruby会議は、月世界へ。</p>
+
+    <section class="meta" aria-label="開催概要">
+      <dl><dt class="mono">Date</dt><dd><time datetime="2027-06-19">Sat, Jun 19, 2027</time></dd></dl>
+      <dl><dt class="mono">Venue</dt><dd><a href="https://gessekai.net/">LiveHall Club Gessekai</a></dd></dl>
+      <dl><dt class="mono">Location</dt><dd>Sannomiya, Kobe</dd></dl>
+      <dl><dt class="mono">Status</dt><dd>Coming soon</dd></dl>
+    </section>
+
+    <footer class="foot">
+      <p class="mono">N 34.69 / E 135.19</p>
+      <p class="mono hashtag"><a href="https://x.com/search?q=%23kanrk10&amp;src=typed_query" target="_blank" rel="noopener" aria-label="X（Twitter）で#kanrk10を検索">#kanrk10</a></p>
+    </footer>
+  </section>
+</main>
+
+</body>
+</html>
